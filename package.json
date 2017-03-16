@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "name": "r2bot-sdk",
+  "version": "2.1.0",
+  "description": "r2bot family: The SDK to communicate BE API with main bot",
+  "main": "index.js",
+  "author": "CivicData HK",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "lodash": "^4.17.4",
+    "request": "^2.65.0"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
+  }
+}
