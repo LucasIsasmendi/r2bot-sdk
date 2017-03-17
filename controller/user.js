@@ -21,7 +21,7 @@ function signup (clientID, voterid, phone, callback) {
   if (!validate.clientID(clientID)) {
     return callback(REASON.INVALID_CLIENT_ID)
   }
-  if (!validate.voterid(voterid)) {
+  if (!validate.voterID(voterid)) {
     return callback(REASON.INVALID_VOTER_ID)
   }
   if (!validate.phone(phone)) {
@@ -39,27 +39,31 @@ function signup (clientID, voterid, phone, callback) {
   return callAPI(params, callback)
 }
 
-function alreadyVoted (clientID, callback) {
+function getNominate (clientID, callback) {
   if (!validate.clientID(clientID)) {
     return callback(REASON.INVALID_CLIENT_ID)
   }
 
   let params = {
-    url: ['user', clientID, 'vote'].join('/'),
-    method: 'GET'
+    url: ['user', 'nominate'].join('/'),
+    method: 'GET',
+    body: {
+      clientID: clientID
+    }
   }
   return callAPI(params, callback)
 }
 
-function vote (clientID, choice, callback) {
+function nominate (clientID, choice, callback) {
   if (!validate.clientID(clientID)) {
     return callback(REASON.INVALID_CLIENT_ID)
   }
 
   let params = {
-    url: ['user', clientID, 'vote'].join('/'),
+    url: ['user', 'nominate'].join('/'),
     method: 'POST',
     body: {
+      clientID: clientID,
       choice: choice
     }
   }
@@ -69,6 +73,6 @@ function vote (clientID, choice, callback) {
 module.exports = {
   get: get,
   signup: signup,
-  alreadyVoted: alreadyVoted,
-  vote: vote
+  getNominate: getNominate,
+  nominate: nominate
 }
